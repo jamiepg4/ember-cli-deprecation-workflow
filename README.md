@@ -55,6 +55,24 @@ There are 3 defined handlers that have different behaviors
 
 the output from running `deprecationWorkflow.flushDeprecations()` gives you a nice Json like JS object with all the deprecations in your app. The `matchMessage` property determines what to filter out of the console. You can pass a string that must match the console message exactly or a `RegExp` for `ember-cli-deprecation-workflow` filter the log by.
 
+### Configuration
+
+By default the addon's code is included when we're either:
+
+* Running non-production build or,
+* Running tests against production
+
+You can override this by setting an option in ember-cli-build.
+
+```
+app = new EmberApp(defaults, {
+  deprecationWorkflow: {
+    // Specify your own condition here.
+    enabled: env !== 'production'
+  }
+);
+```
+
 ## Contributing
 
 Details on contributing to the addon itself (not required for normal usage).

@@ -5,12 +5,16 @@ module.exports = {
   name: 'ember-cli-deprecation-workflow',
 
   _shouldInclude: function() {
+    var app = this.app;
+    if (app.options.deprecationWorkflow && app.options.deprecationWorkflow.enabled) {
+      return true;
+    }
     // the presence of `this.app.tests` shows that we are in one of:
     //
     // * running non-production build
     // * running tests against production
     //
-    return this.app.tests;
+    return app.tests;
   },
 
   included: function() {
